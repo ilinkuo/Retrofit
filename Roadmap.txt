@@ -1,0 +1,30 @@
+REST is good but deficient
+	- Execution suffers from excessive naming, or too much reliance on persistent URLs, though not to the degree of semantic web technology stack. URL templating is also important in "standardizing" though Fielding avoided it.
+	- Theory is lacking, fundamentally in the way that a number of modern OO languages need functional aspects enhanced. Too much emphasis on nouns, not verbs, on names, not operations. It is a proper reaction to the haphazard designless proliferation of rpc call style, but the answer should not be to emasculate verbs but rather guide the design
+
+VERB design should be composable as well as operate in a streamable fashion, and match with http idioms
+	- composability is the lesson of unix verbs. This is the primary feedback that serves to cull bad api design
+	- composability should not sacrifice performance, hence be streaming. 
+		* Streaming requires few resources than conventional approaches. 
+		* Stream processing should be kept in a single thread as much as possible. Multithreading pipeline components is NOT the way to performance. Keep the multiple components of a process on the same thread. Thread/context switches should only be performed if there is blocking. 
+		* The existing streaming idioms are insufficiently designed for composability and modularity. The underlying streaming idioms should be converted to streamchunk idioms to allow unix pipelines, xml pipelines, and http pipelines to interoperate.
+	- 
+	
+HTTP verbing, in contrast to REST which is HTTP nouning
+	- CRUD operations are insufficient (and also, very nounish oeprations)
+	- REST does not lend itself to a functional programming model, and especially the syntax should encourage the easy chaining of HTTP verb operations.
+	- Like REST, HTTP verbing should rely as much as possible on the natural idioms of the transport media, such as JSON
+		* values may be literals or JSON objects
+	- HTTP services are the lingua franca. Adding services to HTTP enables their use by ANY programming language
+	- HTTP verbing syntax should be translateable roundtrip to unix command line with full functional fidelity. This enables HTTP verb services to function as both an HTTP service as well as as command line tools.
+
+preliminary URL templating design
+	- retrofit/service/<service-name>/<service-op> invokes the service
+		* example: retrofit/service/git/stash
+	- retrofit/admin/<service-name> brings up configuration for that service
+		* retrofit/admin/retrofit brings up configuration for the retrofit server itself
+	- retrofit/user/<user-name> brings up the user administration, and should use REST idioms
+	- retrofit/man/<service-name> brings up man pages
+		
+	
+
